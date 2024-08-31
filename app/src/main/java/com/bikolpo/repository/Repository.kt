@@ -1,14 +1,9 @@
 package com.bikolpo.repository
 
-import android.util.Log
-import androidx.room.RoomDatabase
 import com.bikolpo.database.LocalDatabase
-import com.bikolpo.model.CategoriesResponse
-import com.bikolpo.service.APIService
 import com.bikolpo.service.Network
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 
 class Repository(private val database: LocalDatabase) {
 
