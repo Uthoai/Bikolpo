@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -33,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -45,4 +50,35 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //retrofit moshi
+    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.converter)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.scalars)
+
+    //room
+    implementation(libs.room)
+    implementation(libs.room.coroutines)
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    //coroutine
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+
+    //navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    // view model
+    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.fragment)
+
+    //Other library
+    implementation(libs.work)
+    implementation(libs.timber)
+    implementation(libs.picasso)
+
 }
