@@ -1,6 +1,7 @@
 package com.bikolpo.service
 
 import com.bikolpo.model.CategoriesResponse
+import com.bikolpo.model.CategoriesResponseItem
 import com.bikolpo.utils.Constant
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -12,7 +13,7 @@ import retrofit2.http.GET
 interface APIService {
 
     @GET("categories")
-    suspend fun getCategories(): Response<CategoriesResponse>
+    suspend fun getCategories(): Response<List<CategoriesResponseItem>>
 
 }
 

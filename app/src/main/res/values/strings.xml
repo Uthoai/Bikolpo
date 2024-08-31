@@ -2,4 +2,7 @@
     <string name="app_name">Bikolpo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="indian_product">Indian Product</string>
+    <string name="category">Category</string>
+    <string name="product_category">Product Category</string>
 </resources>

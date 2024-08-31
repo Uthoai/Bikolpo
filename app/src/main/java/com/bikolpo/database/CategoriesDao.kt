@@ -1,5 +1,6 @@
 package com.bikolpo.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,6 +14,6 @@ interface CategoriesDao {
     suspend fun insertCategories(categories: List<CategoriesResponseItem>)
 
     @Query("SELECT * FROM categories")
-    suspend fun getCategories(): List<CategoriesResponseItem>
+    fun getCategoriesList(): LiveData<List<CategoriesResponseItem>>
 
 }
