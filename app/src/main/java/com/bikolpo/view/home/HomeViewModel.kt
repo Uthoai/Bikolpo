@@ -24,22 +24,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     init {
         viewModelScope.launch {
+            // Fetch categories
             repository.fetchCategories()
             repository.getCategoriesFromDatabase().observeForever { categories ->
                 _categories.value = categories
             }
 
+            // Fetch Indian brands
             repository.fetchIndianBrands()
             repository.getIndianBrandsFromDatabase().observeForever { brands ->
                 _indianBrands.value = brands
             }
+
+            // Fetch alternatives
+            repository.fetchAlternatives()
         }
     }
-
-    /*val categoriesList = repository.getCategoriesFromDatabase()
-
-    private fun fetchCategories() {
-
-    }*/
 
 }

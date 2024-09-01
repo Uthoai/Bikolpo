@@ -10,6 +10,7 @@ import org.json.JSONArray
 
 class Repository(private val database: LocalDatabase) {
 
+    // Fetch categories from the API and insert them into the database
     suspend fun fetchCategories() {
         withContext(Dispatchers.IO) {
             try {
@@ -29,6 +30,7 @@ class Repository(private val database: LocalDatabase) {
 
     fun getCategoriesFromDatabase() = database.categoriesDao.getCategoriesList()
 
+    // Fetch Indian brands from the API and insert them into the database
     suspend fun fetchIndianBrands() {
         withContext(Dispatchers.IO) {
             try {
@@ -49,5 +51,25 @@ class Repository(private val database: LocalDatabase) {
     }
 
     fun getIndianBrandsFromDatabase() = database.indianBrandsDao.getIndianBrandsList()
+
+    // Fetch alternatives from the API and insert them into the database
+    suspend fun fetchAlternatives() {
+        withContext(Dispatchers.IO) {
+            try {
+                val response = Network.apiService.getAlternatives()
+                if (response.isSuccessful) {
+                    response.body()?.let { data ->
+                        database.alternativeDao.insertAlternative(data)
+                    }
+                } else {
+                    // Handle error
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getAlternativesFromDatabase() = database.alternativeDao.getAlternativeList()
 
 }

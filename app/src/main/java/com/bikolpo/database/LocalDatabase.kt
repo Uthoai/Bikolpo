@@ -4,16 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import com.bikolpo.database.dao.AlternativeDao
+import com.bikolpo.database.dao.CategoriesDao
+import com.bikolpo.database.dao.IndianBrandsDao
+import com.bikolpo.model.AlternativesResponseItem
 import com.bikolpo.model.CategoriesResponseItem
 import com.bikolpo.model.IndianBrandsResponseItem
-import com.bikolpo.utils.Converters
 
-@Database(entities = [CategoriesResponseItem::class,IndianBrandsResponseItem::class], version = 1)
-abstract class LocalDatabase():RoomDatabase() {
+@Database(
+    entities = [
+        CategoriesResponseItem::class,
+        IndianBrandsResponseItem::class,
+        AlternativesResponseItem::class
+    ],
+    version = 1
+)
+abstract class LocalDatabase() : RoomDatabase() {
     abstract val categoriesDao: CategoriesDao
     abstract val indianBrandsDao: IndianBrandsDao
-
+    abstract val alternativeDao: AlternativeDao
 
     companion object {
         @Volatile

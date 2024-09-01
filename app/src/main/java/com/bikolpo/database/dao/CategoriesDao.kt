@@ -1,4 +1,4 @@
-package com.bikolpo.database
+package com.bikolpo.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

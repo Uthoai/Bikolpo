@@ -36,6 +36,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_product_category"/>
 
+    <TextView
+        android:id="@+id/tv_indian_brands"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/indian_brands"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategory"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBrands"
         android:layout_width="match_parent"
@@ -50,7 +63,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewCategory"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_indian_brands"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

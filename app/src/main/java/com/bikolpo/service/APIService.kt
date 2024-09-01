@@ -1,5 +1,6 @@
 package com.bikolpo.service
 
+import com.bikolpo.model.AlternativesResponseItem
 import com.bikolpo.model.CategoriesResponseItem
 import com.bikolpo.utils.Constant
 import com.squareup.moshi.Moshi
@@ -13,6 +14,9 @@ interface APIService {
 
     @GET("categories")
     suspend fun getCategories(): Response<List<CategoriesResponseItem>>
+
+    @GET("alternatives")
+    suspend fun getAlternatives(): Response<List<AlternativesResponseItem>>
 
 }
 
