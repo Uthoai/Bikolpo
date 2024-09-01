@@ -80,5 +80,6 @@ dependencies {
     implementation(libs.work)
     implementation(libs.timber)
     implementation(libs.picasso)
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 }

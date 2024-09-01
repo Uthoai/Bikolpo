@@ -1,14 +1,17 @@
 package com.bikolpo.repository
 
 import com.bikolpo.database.LocalDatabase
+import com.bikolpo.service.BrandServiceNetwork
 import com.bikolpo.service.Network
+import com.bikolpo.utils.parseBrandJsonResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 
 class Repository(private val database: LocalDatabase) {
 
     suspend fun fetchCategories() {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             try {
                 val response = Network.apiService.getCategories()
                 if (response.isSuccessful) {
@@ -25,5 +28,26 @@ class Repository(private val database: LocalDatabase) {
     }
 
     fun getCategoriesFromDatabase() = database.categoriesDao.getCategoriesList()
+
+    suspend fun fetchIndianBrands() {
+        withContext(Dispatchers.IO) {
+            try {
+                val response = BrandServiceNetwork.brandsService.getIndianBrands()
+                if (response.isSuccessful) {
+                    response.body()?.let { data ->
+                        val jsonResult = JSONArray(data)
+                        val brandList = parseBrandJsonResult(jsonResult)
+                        database.indianBrandsDao.insertIndianBrands(brandList)
+                    }
+                } else {
+                    // Handle error
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getIndianBrandsFromDatabase() = database.indianBrandsDao.getIndianBrandsList()
 
 }

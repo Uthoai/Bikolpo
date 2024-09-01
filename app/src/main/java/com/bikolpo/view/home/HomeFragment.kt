@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bikolpo.adapter.BrandsAdapter
 import com.bikolpo.adapter.CategoryAdapter
 import com.bikolpo.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var adapter: CategoryAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
+    private lateinit var brandsAdapter: BrandsAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,8 +29,14 @@ class HomeFragment : Fragment() {
 
     private fun observer() {
         viewModel.categories.observe(viewLifecycleOwner){
-            adapter = CategoryAdapter(it)
-            binding.recyclerViewCategory.adapter = adapter
+            categoryAdapter = CategoryAdapter(it)
+            binding.recyclerViewCategory.adapter = categoryAdapter
         }
+
+        viewModel.indianBrands.observe(viewLifecycleOwner){
+            brandsAdapter = BrandsAdapter(it)
+            binding.recyclerViewBrands.adapter = brandsAdapter
+        }
+
     }
 }

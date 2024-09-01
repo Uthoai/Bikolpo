@@ -1,7 +1,7 @@
 package com.bikolpo.model
 
-import com.squareup.moshi.Json
 import android.support.annotation.Keep
+import com.squareup.moshi.Json
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -18,5 +18,3 @@ data class CategoriesResponseItem(
     @Json(name = "slug")
     val slug: String? = null
 )
-
-class CategoriesResponse : ArrayList<CategoriesResponseItem>()

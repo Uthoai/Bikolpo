@@ -1,6 +1,5 @@
 package com.bikolpo.service
 
-import com.bikolpo.model.CategoriesResponse
 import com.bikolpo.model.CategoriesResponseItem
 import com.bikolpo.utils.Constant
 import com.squareup.moshi.Moshi
