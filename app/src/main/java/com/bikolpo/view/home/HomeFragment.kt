@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bikolpo.adapter.BrandsAdapter
 import com.bikolpo.adapter.CategoryAdapter
 import com.bikolpo.databinding.FragmentHomeBinding
@@ -34,7 +34,10 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.indianBrands.observe(viewLifecycleOwner){
-            brandsAdapter = BrandsAdapter(it)
+            brandsAdapter = BrandsAdapter(it){ selectedItem ->
+                val action = HomeFragmentDirections.actionHomeFragmentToAlternativeFragment(selectedItem)
+                findNavController().navigate(action)
+            }
             binding.recyclerViewBrands.adapter = brandsAdapter
         }
 

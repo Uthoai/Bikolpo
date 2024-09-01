@@ -7,4 +7,6 @@
     <string name="product_category">Product Category</string>
     <string name="bn_alternetive">বিকল্প</string>
     <string name="indian_brands">Indian Brands</string>
+    <string name="bn_alternative_product_bd_brand">ভারতীয় পন্য এর বাংলাদেশী বিকল্প</string>
+    <string name="textview">TextView</string>
 </resources>

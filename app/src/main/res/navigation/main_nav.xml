@@ -9,5 +9,21 @@
         android:id="@+id/homeFragment"
         android:name="com.bikolpo.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_alternativeFragment"
+            app:destination="@id/alternativeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/alternativeFragment"
+        android:name="com.bikolpo.AlternativeFragment"
+        android:label="fragment_alternative"
+        tools:layout="@layout/fragment_alternative" >
+        <argument
+            android:name="brand_item"
+            app:argType="com.bikolpo.model.IndianBrandsResponseItem" />
+    </fragment>
+
+
 </navigation>
