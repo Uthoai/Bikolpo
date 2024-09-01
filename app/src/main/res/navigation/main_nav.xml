@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/alternativeFragment"
-        android:name="com.bikolpo.AlternativeFragment"
+        android:name="com.bikolpo.view.alternative.AlternativeFragment"
         android:label="fragment_alternative"
         tools:layout="@layout/fragment_alternative" >
         <argument

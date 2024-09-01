@@ -70,6 +70,8 @@ class Repository(private val database: LocalDatabase) {
         }
     }
 
-    fun getAlternativesFromDatabase() = database.alternativeDao.getAlternativeList()
+    //fun getAlternativesFromDatabase() = database.alternativeDao.getAlternativeList()
+
+    fun getAlternativesFromDatabase(ids: List<Int>) = database.alternativeDao.getAlternativeList(ids)
 
 }

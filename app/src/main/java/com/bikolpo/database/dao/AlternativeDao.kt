@@ -13,7 +13,7 @@ interface AlternativeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAlternative(alternatives: List<AlternativesResponseItem>)
 
-    @Query("SELECT * FROM categories")
-    fun getAlternativeList(): LiveData<List<AlternativesResponseItem>>
+    @Query("SELECT * FROM alternatives_table WHERE id IN (:ids)")
+    fun getAlternativeList(ids: List<Int>): LiveData<List<AlternativesResponseItem>>
 
 }
