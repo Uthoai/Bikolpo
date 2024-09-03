@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bikolpo.adapter.BrandsAdapter
@@ -29,14 +30,20 @@ class HomeFragment : Fragment() {
 
     private fun observer() {
         viewModel.categories.observe(viewLifecycleOwner){
-            categoryAdapter = CategoryAdapter(it)
+            categoryAdapter = CategoryAdapter(it){id->
+                viewModel.filterBrandsByCategory(id)
+            }
             binding.recyclerViewCategory.adapter = categoryAdapter
         }
 
         viewModel.indianBrands.observe(viewLifecycleOwner){
             brandsAdapter = BrandsAdapter(it){ selectedItem ->
-                val action = HomeFragmentDirections.actionHomeFragmentToAlternativeFragment(selectedItem)
-                findNavController().navigate(action)
+                if (selectedItem.alternatives != null){
+                    val action = HomeFragmentDirections.actionHomeFragmentToAlternativeFragment(selectedItem)
+                    findNavController().navigate(action)
+                }else{
+                    Toast.makeText(requireContext(), "In Database there are no alternatives for this brand", Toast.LENGTH_SHORT).show()
+                }
             }
             binding.recyclerViewBrands.adapter = brandsAdapter
         }

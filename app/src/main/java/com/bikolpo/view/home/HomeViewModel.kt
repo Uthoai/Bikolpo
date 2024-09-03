@@ -9,6 +9,7 @@ import com.bikolpo.database.LocalDatabase.Companion.getDatabase
 import com.bikolpo.model.CategoriesResponseItem
 import com.bikolpo.model.IndianBrandsResponseItem
 import com.bikolpo.repository.Repository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -37,7 +38,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             // Fetch alternatives
-            repository.fetchAlternatives()
+            //repository.fetchAlternatives()
+        }
+    }
+
+    fun filterBrandsByCategory(categoryId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val brands = repository.getBrandsByCategory(categoryId)
+            _indianBrands.postValue(brands)
         }
     }
 

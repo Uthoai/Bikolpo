@@ -21,26 +21,28 @@ class AlternativeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAlternativeBinding.inflate(inflater, container, false)
-        var alternativeList = listOf<Int>()
+        var alternativeList: List<Int>
         val args = AlternativeFragmentArgs.fromBundle(requireArguments())
         val brandItem = args.brandItem
 
         binding.apply {
-            Glide.with(requireContext())
-                .load(brandItem.image)
-                .into(ivItemImage)
-            tvItemName.text = brandItem.name
-        }
-
-        if (brandItem.alternatives != null){
-            brandItem.alternatives?.let {
-                alternativeList = stringToList(it)
+            brandItem?.let {
+                Glide.with(requireContext())
+                    .load(it.image)
+                    .into(ivItemImage)
+                tvItemName.text = it.name
             }
         }
 
-        viewModel.getAlternativesFromDatabase(alternativeList).observe(viewLifecycleOwner) { alternatives ->
-            adapter = AlternativeBrandAdapter(alternatives)
-            binding.recyclerViewBDBrands.adapter = adapter
+        if (brandItem?.alternatives != null){
+            brandItem.alternatives.let {
+                alternativeList = stringToList(it)
+
+                viewModel.getAlternativesFromDatabase(alternativeList).observe(viewLifecycleOwner) { alternatives ->
+                    adapter = AlternativeBrandAdapter(alternatives)
+                    binding.recyclerViewBDBrands.adapter = adapter
+                }
+            }
         }
 
         return binding.root

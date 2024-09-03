@@ -4,15 +4,18 @@ import com.bikolpo.database.LocalDatabase
 import com.bikolpo.service.BrandServiceNetwork
 import com.bikolpo.service.Network
 import com.bikolpo.utils.parseBrandJsonResult
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 
 class Repository(private val database: LocalDatabase) {
 
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+
     // Fetch categories from the API and insert them into the database
     suspend fun fetchCategories() {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             try {
                 val response = Network.apiService.getCategories()
                 if (response.isSuccessful) {
@@ -32,7 +35,7 @@ class Repository(private val database: LocalDatabase) {
 
     // Fetch Indian brands from the API and insert them into the database
     suspend fun fetchIndianBrands() {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             try {
                 val response = BrandServiceNetwork.brandsService.getIndianBrands()
                 if (response.isSuccessful) {
@@ -52,9 +55,11 @@ class Repository(private val database: LocalDatabase) {
 
     fun getIndianBrandsFromDatabase() = database.indianBrandsDao.getIndianBrandsList()
 
+    fun getBrandsByCategory(categoryId: Int) = database.indianBrandsDao.getBrandsByCategory(categoryId)
+
     // Fetch alternatives from the API and insert them into the database
     suspend fun fetchAlternatives() {
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             try {
                 val response = Network.apiService.getAlternatives()
                 if (response.isSuccessful) {
@@ -69,8 +74,6 @@ class Repository(private val database: LocalDatabase) {
             }
         }
     }
-
-    //fun getAlternativesFromDatabase() = database.alternativeDao.getAlternativeList()
 
     fun getAlternativesFromDatabase(ids: List<Int>) = database.alternativeDao.getAlternativeList(ids)
 

@@ -16,4 +16,7 @@ interface IndianBrandsDao {
     @Query("SELECT * FROM indian_brands")
     fun getIndianBrandsList(): LiveData<List<IndianBrandsResponseItem>>
 
+    @Query("SELECT * FROM indian_brands WHERE categories LIKE '%' || :categoryId || '%'")
+    fun getBrandsByCategory(categoryId: Int): List<IndianBrandsResponseItem>
+
 }

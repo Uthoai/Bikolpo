@@ -22,7 +22,8 @@
         tools:layout="@layout/fragment_alternative" >
         <argument
             android:name="brand_item"
-            app:argType="com.bikolpo.model.IndianBrandsResponseItem" />
+            app:argType="com.bikolpo.model.IndianBrandsResponseItem"
+            app:nullable="true" />
     </fragment>
 
 
